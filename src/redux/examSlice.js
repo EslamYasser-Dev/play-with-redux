@@ -1,6 +1,6 @@
 // examSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import examData from '../examData.json';
+import examData from '../db/examData.json';
 
 const examSlice = createSlice({
   name: 'exam',

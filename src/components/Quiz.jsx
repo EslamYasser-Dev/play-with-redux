@@ -1,4 +1,3 @@
-// QuizComponent.js
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUserAnswer, updateUserScore } from "../redux/examSlice"
 import Dialog from './dialog';
@@ -12,13 +11,13 @@ const Quiz = () => {
     console.log('Answer selected:', questionIndex, answerIndex);
     dispatch(updateUserAnswer({ questionIndex, answerIndex }));
   };
+
   const handleSubmit = () => {
     const score = calculateScore();
     dispatch(updateUserScore(score));
     dispatch(updateUserAnswer({}));
     document.getElementById('submitted').showModal();
   };
-
 
   const calculateScore = () => {
     let score = 0;
@@ -63,6 +62,5 @@ const Quiz = () => {
     </>
   );
 };
-
 
 export default Quiz;
