@@ -8,6 +8,7 @@ const examSlice = createSlice({
     data: examData,
     userAnswers: {},
     userScore: 0,
+    submitted: false,
   },
   reducers: {
     updateUserAnswer: (state, action) => {
@@ -21,8 +22,11 @@ const examSlice = createSlice({
     updateUserScore: (state, action) => {
       state.userScore = action.payload;
     },
+    submitAnswers: (state) => {
+      state.submitted = true;
+    },
   },
 });
 
-export const { updateUserAnswer, updateUserScore } = examSlice.actions;
+export const { updateUserAnswer, updateUserScore, submitAnswers } = examSlice.actions;
 export default examSlice.reducer;

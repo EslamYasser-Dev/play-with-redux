@@ -1,6 +1,6 @@
-
 // eslint-disable-next-line react/prop-types
 const Dialog = ({ score }) => {
+
     return (
         <dialog id="submitted" className="modal">
             <div className="modal-box">
@@ -9,7 +9,7 @@ const Dialog = ({ score }) => {
                 <div className="modal-action">
                     <form method="dialog">
 
-                        <button className="btn btn-active btn-primary">Got it, thanks</button>
+                        <button className="btn btn-active btn-primary" onClick={() =>{}}>Got it, thanks</button>
                     </form>
                 </div>
             </div>
