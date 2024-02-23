@@ -1,6 +1,7 @@
 // QuizComponent.js
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUserAnswer, updateUserScore } from "../redux/examSlice"
+import Dialog from './dialog';
 const Quiz = () => {
   const dispatch = useDispatch();
   const examData = useSelector((state) => state.exam.data);
@@ -15,6 +16,7 @@ const Quiz = () => {
     const score = calculateScore();
     dispatch(updateUserScore(score));
     dispatch(updateUserAnswer({}));
+    document.getElementById('submitted').showModal();
   };
 
 
@@ -34,14 +36,15 @@ const Quiz = () => {
   return (
     <>
       {examData.questions.map((question, questionIndex) => (
-        <div key={questionIndex} className="card bg-slate-50 w-1/2 m-10 p-5 shadow-2xl">
+        <div key={questionIndex} className="card bg-slate-50 w-1/2 m-10 p-5 shadow-2xl ease-in-out scroll-smooth hover:shadow-md duration-300">
 
           <p className="mx-10 font-bold text-xl">{question.question}</p>
-          <div className="divider">           <span className='badge badge-primary text-xl badge-lg font-bold'>{questionIndex + 1}</span>
+          <div className="divider">
+            <span className='badge badge-primary text-xl badge-lg p-5 font-semibold'>{questionIndex + 1}</span>
           </div>
           <div className="space-y-2 card-body">
             {question.choices.map((choice, choiceIndex) => (
-              <label key={choiceIndex} className="label cursor-pointer">
+              <label key={choiceIndex} className="label ease-in-out cursor-pointer rounded-lg hover:bg-slate-200 ">
                 <span className="text-md">{choice}</span>
                 <input
                   type="radio"
@@ -55,8 +58,8 @@ const Quiz = () => {
           </div>
         </div>
       ))}
-      <button onClick={handleSubmit} className="btn btn-active btn-primary">Submit Answers</button>
-      <p>User Score: {userScore}</p>
+      <button onClick={handleSubmit} className="btn btn-active btn-primary m-20 w-1/4">Submit Answers</button>
+      <Dialog id="submitted" className="model" score={userScore} />
     </>
   );
 };
